@@ -11,7 +11,9 @@
 #import <GLKit/GLKit.h>
 #import "TGMapViewDelegate.h"
 
-@class TGMapMarker;
+#import "TGGeoPoint.h"
+#import "TGGeoPolygon.h"
+#import "TGGeoPolyline.h"
 
 typedef NS_ENUM(NSInteger, TGCameraType) {
     TGCameraTypePerspective = 0,
@@ -19,17 +21,12 @@ typedef NS_ENUM(NSInteger, TGCameraType) {
     TGCameraTypeFlat
 };
 
-typedef NS_ENUM(NSInteger, TGEaseType){
+typedef NS_ENUM(NSInteger, TGEaseType) {
     TGEaseTypeLinear = 0,
     TGEaseTypeCubic,
     TGEaseTypeQuint,
     TGEaseTypeSine
 };
-
-typedef struct {
-    double longitude;
-    double latitude;
-} TGGeoPoint;
 
 typedef uint32_t TGMapMarkerId;
 
@@ -80,9 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)markerSetPointEased:(TGMapMarkerId)identifier coordinates:(TGGeoPoint)coordinate duration:(float)duration easeType:(TGEaseType)ease;
 
-- (BOOL)markerSetPolyline:(TGMapMarkerId)identifier coordinates:(TGGeoPoint *)coordinates count:(int)count;
+- (BOOL)markerSetPolyline:(TGMapMarkerId)identifier polyline:(TGGeoPolyline *)polyline;
 
-- (BOOL)markerSetPolygon:(TGMapMarkerId)identifier coordinates:(TGGeoPoint *)coordinates count:(int*)count rings:(int)rings;
+- (BOOL)markerSetPolygon:(TGMapMarkerId)identifier polygon:(TGGeoPolygon *)polygon;
 
 - (BOOL)markerSetVisible:(TGMapMarkerId)identifier visible:(BOOL)visible;
 
